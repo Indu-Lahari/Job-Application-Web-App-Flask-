@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 # this library allows to interact with database using more high-level code, makes easier to manage database and data
 from flask_sqlalchemy import SQLAlchemy
 
@@ -41,6 +41,7 @@ def index():
                     mobile=mobile, date=date_object, occupation=occupation)
         db.session.add(form)
         db.session.commit()
+        flash(f"{first_name}, Your form was submitted successfully!", "success")
     return render_template("index.html")
 
 
